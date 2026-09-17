@@ -34,37 +34,202 @@ threshold = saved_package["threshold"]
 st.markdown("""
 <style>
 
-.main {
-    padding-top: 1rem;
+/* =========================================================
+   BANKING-STYLE UI
+   Clean institutional design: navy, white, light grey
+   ========================================================= */
+
+:root {
+    --bank-navy: #12345B;
+    --bank-blue: #1D4E89;
+    --bank-light-blue: #EAF2F8;
+    --bank-border: #D8E0E8;
+    --bank-text: #263746;
+    --bank-muted: #667788;
+    --bank-bg: #F4F6F8;
 }
 
+/* Page */
+.stApp {
+    background: var(--bank-bg);
+    color: var(--bank-text);
+}
+
+.main .block-container {
+    max-width: 1180px;
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+}
+
+/* Top institutional bar */
+.bank-topbar {
+    background: var(--bank-navy);
+    color: white;
+    padding: 9px 22px;
+    margin: -1.5rem -1rem 1.25rem -1rem;
+    font-size: 13px;
+    letter-spacing: 0.2px;
+}
+
+.bank-topbar-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Header */
 .header {
-    text-align: center;
-    padding: 20px 0px 10px 0px;
+    background: white;
+    border: 1px solid var(--bank-border);
+    border-top: 4px solid var(--bank-navy);
+    padding: 22px 30px 20px 30px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
 .header h1 {
-    font-size: 42px;
-    margin-bottom: 5px;
+    color: var(--bank-navy);
+    font-size: 30px;
+    font-weight: 650;
+    margin: 0 0 5px 0;
+    letter-spacing: -0.3px;
 }
 
 .header p {
-    font-size: 18px;
-    color: #777777;
+    color: var(--bank-muted);
+    font-size: 14px;
+    margin: 0;
 }
 
+/* Section headings */
 .section {
-    font-size: 24px;
-    font-weight: 600;
-    margin-top: 20px;
-    margin-bottom: 15px;
+    color: var(--bank-navy);
+    background: var(--bank-light-blue);
+    border-left: 4px solid var(--bank-blue);
+    font-size: 17px;
+    font-weight: 650;
+    padding: 11px 15px;
+    margin: 18px 0 16px 0;
 }
 
-.result {
-    padding: 25px;
-    border-radius: 15px;
+/* Form area */
+div[data-testid="stForm"] {
+    background: white;
+    border: 1px solid var(--bank-border);
+    border-radius: 2px;
+    padding: 20px 24px 12px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+/* Labels */
+label {
+    color: #34495E !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+
+/* Inputs */
+div[data-baseweb="input"],
+div[data-baseweb="select"] > div {
+    border-color: #C9D3DD !important;
+    border-radius: 2px !important;
+    background: white !important;
+}
+
+div[data-baseweb="input"]:focus-within,
+div[data-baseweb="select"]:focus-within {
+    border-color: var(--bank-blue) !important;
+    box-shadow: 0 0 0 1px var(--bank-blue) !important;
+}
+
+/* Selectbox text */
+div[data-baseweb="select"] * {
+    font-size: 14px;
+}
+
+/* Primary action button */
+.stFormSubmitButton button {
+    background: var(--bank-navy) !important;
+    border: 1px solid var(--bank-navy) !important;
+    border-radius: 2px !important;
+    min-height: 44px;
+    font-size: 14px !important;
+    font-weight: 650 !important;
+    letter-spacing: 0.1px;
+}
+
+.stFormSubmitButton button:hover {
+    background: #0D2948 !important;
+    border-color: #0D2948 !important;
+}
+
+/* Dividers */
+hr {
+    border-color: #DDE3E8 !important;
+    margin: 22px 0 !important;
+}
+
+/* Result cards */
+.result-card {
+    background: white;
+    border: 1px solid var(--bank-border);
+    border-left: 5px solid var(--bank-blue);
+    padding: 22px 25px;
+    margin-top: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.result-card.high-risk {
+    border-left-color: #B23A3A;
+}
+
+.result-title {
+    font-size: 13px;
+    color: var(--bank-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin-bottom: 7px;
+}
+
+.result-value {
+    color: var(--bank-navy);
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.result-subtitle {
+    color: #526273;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Progress bar */
+div[data-testid="stProgress"] > div > div > div {
+    background-color: var(--bank-blue) !important;
+}
+
+/* Alerts */
+div[data-testid="stAlert"] {
+    border-radius: 2px !important;
+    border-width: 1px !important;
+}
+
+/* Caption */
+.stCaption {
+    color: #71808F !important;
+    font-size: 12px;
+}
+
+/* Footer */
+.bank-footer {
+    border-top: 1px solid var(--bank-border);
+    margin-top: 30px;
+    padding-top: 12px;
     text-align: center;
-    margin-top: 25px;
+    color: #7A8793;
+    font-size: 11px;
 }
 
 </style>
@@ -76,14 +241,16 @@ st.markdown("""
 # =========================================================
 
 st.markdown("""
+<div class="bank-topbar">
+    <div class="bank-topbar-inner">
+        <span>RETAIL CREDIT SERVICES</span>
+        <span>Credit Assessment Portal</span>
+    </div>
+</div>
+
 <div class="header">
-
-<h1>💳 Loan Default Prediction</h1>
-
-<p>
-Predict the likelihood of loan default using a Machine Learning model
-</p>
-
+    <h1>Loan Default Risk Assessment</h1>
+    <p>Credit evaluation based on applicant, financial and repayment information</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -101,7 +268,7 @@ with st.form("loan_prediction_form"):
     # -----------------------------------------------------
 
     st.markdown(
-        '<div class="section">👤 Personal Information</div>',
+        '<div class="section">1. Personal Information</div>',
         unsafe_allow_html=True
     )
 
@@ -178,7 +345,7 @@ with st.form("loan_prediction_form"):
     # -----------------------------------------------------
 
     st.markdown(
-        '<div class="section">💰 Financial Information</div>',
+        '<div class="section">2. Financial Information</div>',
         unsafe_allow_html=True
     )
 
@@ -244,7 +411,7 @@ with st.form("loan_prediction_form"):
     # -----------------------------------------------------
 
     st.markdown(
-        '<div class="section">🏦 Loan Information</div>',
+        '<div class="section">3. Loan Information</div>',
         unsafe_allow_html=True
     )
 
@@ -308,7 +475,7 @@ with st.form("loan_prediction_form"):
     # -----------------------------------------------------
 
     st.markdown(
-        '<div class="section">📊 Credit & Repayment History</div>',
+        '<div class="section">4. Credit & Repayment History</div>',
         unsafe_allow_html=True
     )
 
@@ -369,7 +536,7 @@ with st.form("loan_prediction_form"):
     # -----------------------------------------------------
 
     submitted = st.form_submit_button(
-        "🔍 Predict Loan Default",
+        "Assess Default Risk",
         type="primary",
         use_container_width=True
     )
@@ -427,25 +594,39 @@ if submitted:
     st.divider()
 
     st.markdown(
-        '<div class="section">📋 Prediction Result</div>',
+        '<div class="section">Credit Assessment Result</div>',
         unsafe_allow_html=True
     )
 
 
     if prediction == 1:
 
-        st.error(
-            f"⚠️ HIGHER DEFAULT RISK\n\n"
-            f"Estimated probability of default: "
-            f"{probability_percentage:.2f}%"
+        st.markdown(
+            f"""
+            <div class="result-card high-risk">
+                <div class="result-title">Assessment Outcome</div>
+                <div class="result-value">Higher Default Risk</div>
+                <div class="result-subtitle">
+                    Estimated probability of default: <strong>{probability_percentage:.2f}%</strong>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
 
     else:
 
-        st.success(
-            f"✅ LOWER DEFAULT RISK\n\n"
-            f"Estimated probability of default: "
-            f"{probability_percentage:.2f}%"
+        st.markdown(
+            f"""
+            <div class="result-card">
+                <div class="result-title">Assessment Outcome</div>
+                <div class="result-value">Lower Default Risk</div>
+                <div class="result-subtitle">
+                    Estimated probability of default: <strong>{probability_percentage:.2f}%</strong>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
 
 
@@ -457,3 +638,10 @@ if submitted:
     st.caption(
         f"Classification threshold used by the model: {threshold:.2f}"
     )
+
+
+st.markdown("""
+<div class="bank-footer">
+    Internal Credit Assessment System &nbsp;|&nbsp; Risk classification generated by the configured ML model
+</div>
+""", unsafe_allow_html=True)
